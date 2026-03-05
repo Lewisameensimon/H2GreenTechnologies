@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +10,10 @@
 <style>
 
 /* GLOBAL */
+
+*{
+box-sizing:border-box;
+}
 
 body{
 margin:0;
@@ -32,13 +35,12 @@ position:fixed;
 top:0;
 width:100%;
 z-index:2000;
-background:transparent;
 transition:0.3s;
 }
 
 nav.scrolled{
 background:rgba(255,255,255,0.95);
-backdrop-filter:blur(8px);
+backdrop-filter:blur(10px);
 box-shadow:0 4px 20px rgba(0,0,0,0.08);
 }
 
@@ -58,9 +60,7 @@ gap:12px;
 }
 
 .logo img{
-height:70px;
-object-fit:cover;
-transform:scale(1.6);
+height:60px;
 }
 
 .logo span{
@@ -86,10 +86,22 @@ text-decoration:none;
 font-weight:500;
 font-size:16px;
 color:white;
-transition:0.2s;
 }
 
 nav.scrolled .menu a{
+color:#0F5132;
+}
+
+/* HAMBURGER */
+
+.hamburger{
+display:none;
+font-size:28px;
+cursor:pointer;
+color:white;
+}
+
+nav.scrolled .hamburger{
 color:#0F5132;
 }
 
@@ -104,21 +116,14 @@ position:absolute;
 left:0;
 top:100%;
 width:100%;
-
 background:white;
-
 padding:40px 0;
-
 opacity:0;
 visibility:hidden;
-
 transform:translateY(-10px);
-transition:all 0.25s ease;
-
+transition:all .25s ease;
 box-shadow:0 15px 40px rgba(0,0,0,0.08);
 }
-
-/* SHOW ON HOVER */
 
 .dropdown:hover .dropdown-menu{
 opacity:1;
@@ -153,8 +158,6 @@ font-size:15px;
 color:#0F5132;
 }
 
-/* SUB ITEMS */
-
 .sub-items{
 margin-left:15px;
 margin-top:10px;
@@ -168,9 +171,6 @@ color:#666;
 /* HERO */
 
 .hero{
-position:relative;
-z-index:1;
-
 height:100vh;
 display:flex;
 align-items:center;
@@ -183,27 +183,29 @@ url("https://images.unsplash.com/photo-1466611653911-95081537e5b7");
 
 background-size:cover;
 background-position:center;
+
 color:white;
+padding:0 20px;
 }
 
 .hero h1{
 font-size:64px;
-margin-bottom:15px;
+margin-bottom:10px;
 }
 
 .hero p{
 font-size:22px;
-opacity:0.9;
+opacity:.9;
 }
 
 .hero button{
-margin-top:30px;
-padding:14px 28px;
-font-size:16px;
+margin-top:25px;
+padding:14px 30px;
 border:none;
 border-radius:6px;
 background:#0F5132;
 color:white;
+font-size:16px;
 cursor:pointer;
 }
 
@@ -214,18 +216,17 @@ padding:100px 0;
 }
 
 .title{
-font-size:40px;
+font-size:38px;
 text-align:center;
 color:#0F5132;
-margin-bottom:20px;
 }
 
 .subtitle{
 max-width:700px;
 margin:auto;
 text-align:center;
+margin-top:15px;
 font-size:18px;
-line-height:1.6;
 }
 
 /* GRID */
@@ -243,6 +244,11 @@ padding:35px;
 border-radius:12px;
 box-shadow:0 10px 25px rgba(0,0,0,0.05);
 text-align:center;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
 }
 
 .card img{
@@ -266,13 +272,14 @@ gap:40px;
 
 footer h4{
 color:white;
+margin-bottom:10px;
 }
 
 footer a{
 display:block;
 text-decoration:none;
 color:#9CA3AF;
-margin-top:8px;
+margin-top:6px;
 }
 
 .footer-bottom{
@@ -281,6 +288,75 @@ margin-top:40px;
 padding-top:20px;
 text-align:center;
 font-size:14px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.hamburger{
+display:block;
+}
+
+.menu{
+position:absolute;
+top:70px;
+left:0;
+width:100%;
+background:white;
+
+flex-direction:column;
+align-items:flex-start;
+gap:20px;
+
+padding:30px;
+
+display:none;
+}
+
+.menu.active{
+display:flex;
+}
+
+.menu a{
+color:#0F5132;
+}
+
+.dropdown-menu{
+position:relative;
+opacity:1;
+visibility:visible;
+transform:none;
+box-shadow:none;
+padding:20px 0;
+display:none;
+}
+
+.dropdown.open .dropdown-menu{
+display:block;
+}
+
+.dropdown-container{
+flex-direction:column;
+gap:30px;
+}
+
+.hero h1{
+font-size:40px;
+}
+
+.hero p{
+font-size:17px;
+}
+
+section{
+padding:70px 20px;
+}
+
+.footer-grid{
+grid-template-columns:1fr;
+}
+
 }
 
 </style>
@@ -296,20 +372,18 @@ font-size:14px;
 <div class="container nav-inner">
 
 <div class="logo">
-
 <img src="logo.png">
-
 <span>H<sub>2</sub>Green Technologies</span>
-
 </div>
 
-<div class="menu">
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+<div class="menu" id="menu">
 
 <a href="#">Home</a>
 
 <div class="dropdown">
-
-<a href="#">Products</a>
+<a href="#" onclick="toggleDropdown(event)">Products</a>
 
 <div class="dropdown-menu">
 
@@ -320,17 +394,12 @@ font-size:14px;
 <h4>Solar Group</h4>
 
 <a href="#">Solar Panels</a>
-
 <a href="#">Solar Inverters</a>
 
 <div class="sub-items">
-
-<a href="#">Solar Inverters String Inverters</a>
-
-<a href="#">Solar Edge - Optimizer Inverters</a>
-
+<a href="#">String Inverters</a>
+<a href="#">Optimizer Inverters</a>
 <a href="#">Micro Inverters</a>
-
 </div>
 
 </div>
@@ -339,10 +408,8 @@ font-size:14px;
 
 <h4>Hydrogen Group</h4>
 
-<a href="#">Hydrogen Fuel Cell Stacks</a>
-
-<a href="#">Hydrogen Fuel Cell Components</a>
-
+<a href="#">Fuel Cell Stacks</a>
+<a href="#">Fuel Cell Components</a>
 <a href="#">PEM Electrolyzer</a>
 
 </div>
@@ -352,9 +419,10 @@ font-size:14px;
 </div>
 
 </div>
+
 <div class="dropdown">
 
-<a href="#">Applications</a>
+<a href="#" onclick="toggleDropdown(event)">Applications</a>
 
 <div class="dropdown-menu">
 
@@ -362,25 +430,18 @@ font-size:14px;
 
 <div class="dropdown-column">
 
-<h4>Applications Group</h4>
+<h4>Applications</h4>
 
 <a href="#">H2 Lab</a>
-
 <a href="#">H2 Power</a>
-
 <a href="#">H2 Transport</a>
 
 <div class="sub-items">
 
 <a href="#">Car</a>
-
 <a href="#">Train</a>
-
 <a href="#">Wind Turbine</a>
-
 <a href="#">Street Light</a>
-
-
 
 </div>
 
@@ -388,15 +449,11 @@ font-size:14px;
 
 <div class="dropdown-column">
 
-
-<h4><br></h4>
+<h4>&nbsp;</h4>
 
 <a href="#">H2 Bike</a>
-
 <a href="#">H2 Drone</a>
 
-
-
 </div>
 
 </div>
@@ -404,11 +461,8 @@ font-size:14px;
 </div>
 
 </div>
-
-<!-- <a href="#">Applications</a> -->
 
 <a href="#">About Us</a>
-
 <a href="#">Contact</a>
 
 </div>
@@ -416,7 +470,6 @@ font-size:14px;
 </div>
 
 </nav>
-
 
 <!-- HERO -->
 
@@ -434,7 +487,6 @@ font-size:14px;
 
 </section>
 
-
 <!-- FEATURES -->
 
 <section>
@@ -442,6 +494,11 @@ font-size:14px;
 <div class="container">
 
 <h2 class="title">Why H2Green</h2>
+
+<p class="subtitle">
+Innovating sustainable hydrogen energy solutions
+for transportation, industry, and power systems.
+</p>
 
 <div class="grid">
 
@@ -481,7 +538,6 @@ font-size:14px;
 
 </section>
 
-
 <!-- FOOTER -->
 
 <footer>
@@ -501,9 +557,7 @@ font-size:14px;
 <h4>Technology</h4>
 
 <a href="#">Hydrogen Fuel Cells</a>
-
 <a href="#">Electrolysis</a>
-
 <a href="#">Energy Storage</a>
 
 </div>
@@ -513,9 +567,7 @@ font-size:14px;
 <h4>Company</h4>
 
 <a href="#">About</a>
-
 <a href="#">Careers</a>
-
 <a href="#">News</a>
 
 </div>
@@ -525,7 +577,6 @@ font-size:14px;
 <h4>Contact</h4>
 
 <a href="#">info@h2green.com</a>
-
 <a href="#">Locations</a>
 
 </div>
@@ -540,10 +591,9 @@ font-size:14px;
 
 </footer>
 
-
-<!-- NAVBAR SCROLL EFFECT -->
-
 <script>
+
+/* NAV SCROLL */
 
 window.addEventListener("scroll",function(){
 
@@ -558,8 +608,29 @@ nav.classList.remove("scrolled");
 
 });
 
+/* MOBILE MENU */
+
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("active");
+}
+
+/* MOBILE DROPDOWN */
+
+function toggleDropdown(e){
+
+if(window.innerWidth < 900){
+
+e.preventDefault();
+
+const parent = e.target.parentElement;
+
+parent.classList.toggle("open");
+
+}
+
+}
+
 </script>
 
 </body>
 </html>
-
