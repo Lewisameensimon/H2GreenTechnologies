@@ -1,25 +1,309 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>H2Green Technologies</title>
 
-<link rel="stylesheet" href="css/theme.css">
-<link rel="stylesheet" href="css/style.css">
+<style>
+
+/* GLOBAL */
+
+body{
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
+background:#F4FBF7;
+color:#1C1C1C;
+}
+
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+}
+
+/* NAVBAR */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+z-index:2000;
+background:transparent;
+transition:0.3s;
+}
+
+nav.scrolled{
+background:rgba(255,255,255,0.95);
+backdrop-filter:blur(8px);
+box-shadow:0 4px 20px rgba(0,0,0,0.08);
+}
+
+.nav-inner{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 0;
+}
+
+/* LOGO */
+
+.logo{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.logo img{
+height:70px;
+object-fit:cover;
+transform:scale(1.6);
+}
+
+.logo span{
+font-size:22px;
+font-weight:600;
+color:white;
+}
+
+nav.scrolled .logo span{
+color:#0F5132;
+}
+
+/* MENU */
+
+.menu{
+display:flex;
+align-items:center;
+gap:35px;
+}
+
+.menu a{
+text-decoration:none;
+font-weight:500;
+font-size:16px;
+color:white;
+transition:0.2s;
+}
+
+nav.scrolled .menu a{
+color:#0F5132;
+}
+
+/* DROPDOWN */
+
+.dropdown{
+position:static;
+}
+
+.dropdown-menu{
+position:absolute;
+left:0;
+top:100%;
+width:100%;
+
+background:white;
+
+padding:40px 0;
+
+opacity:0;
+visibility:hidden;
+
+transform:translateY(-10px);
+transition:all 0.25s ease;
+
+box-shadow:0 15px 40px rgba(0,0,0,0.08);
+}
+
+/* SHOW ON HOVER */
+
+.dropdown:hover .dropdown-menu{
+opacity:1;
+visibility:visible;
+transform:translateY(0);
+}
+
+/* DROPDOWN CONTENT */
+
+.dropdown-container{
+width:90%;
+max-width:1200px;
+margin:auto;
+display:flex;
+gap:120px;
+}
+
+.dropdown-column h4{
+margin-bottom:15px;
+color:#0F5132;
+}
+
+.dropdown-column a{
+display:block;
+margin-bottom:10px;
+text-decoration:none;
+color:#333;
+font-size:15px;
+}
+
+.dropdown-column a:hover{
+color:#0F5132;
+}
+
+/* SUB ITEMS */
+
+.sub-items{
+margin-left:15px;
+margin-top:10px;
+}
+
+.sub-items a{
+font-size:14px;
+color:#666;
+}
+
+/* HERO */
+
+.hero{
+position:relative;
+z-index:1;
+
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+
+background:
+linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)),
+url("https://images.unsplash.com/photo-1466611653911-95081537e5b7");
+
+background-size:cover;
+background-position:center;
+color:white;
+}
+
+.hero h1{
+font-size:64px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:22px;
+opacity:0.9;
+}
+
+.hero button{
+margin-top:30px;
+padding:14px 28px;
+font-size:16px;
+border:none;
+border-radius:6px;
+background:#0F5132;
+color:white;
+cursor:pointer;
+}
+
+/* SECTIONS */
+
+section{
+padding:100px 0;
+}
+
+.title{
+font-size:40px;
+text-align:center;
+color:#0F5132;
+margin-bottom:20px;
+}
+
+.subtitle{
+max-width:700px;
+margin:auto;
+text-align:center;
+font-size:18px;
+line-height:1.6;
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+margin-top:50px;
+}
+
+.card{
+background:white;
+padding:35px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.05);
+text-align:center;
+}
+
+.card img{
+width:60px;
+margin-bottom:15px;
+}
+
+/* FOOTER */
+
+footer{
+background:#111;
+color:#D1D5DB;
+padding:60px 20px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:40px;
+}
+
+footer h4{
+color:white;
+}
+
+footer a{
+display:block;
+text-decoration:none;
+color:#9CA3AF;
+margin-top:8px;
+}
+
+.footer-bottom{
+border-top:1px solid #2B2B2B;
+margin-top:40px;
+padding-top:20px;
+text-align:center;
+font-size:14px;
+}
+
+</style>
 
 </head>
 
 <body>
 
-<header>
-
-<div class="logo">H2Green</div>
+<!-- NAVBAR -->
 
 <nav>
+
+<div class="container nav-inner">
+
+<div class="logo">
+
+<img src="logo.png">
+
+<span>H<sub>2</sub>Green Technologies</span>
+
+</div>
+
+<div class="menu">
 
 <a href="#">Home</a>
 
@@ -27,42 +311,91 @@
 
 <a href="#">Products</a>
 
-<div class="mega-menu">
+<div class="dropdown-menu">
 
-<div class="menu-column">
-<h4>Hydrogen</h4>
-<a>Fuel Cell Stacks</a>
-<a>Fuel Cell Components</a>
-<a>PEM Electrolyzer</a>
+<div class="dropdown-container">
+
+<div class="dropdown-column">
+
+<h4>Solar Group</h4>
+
+<a href="#">Solar Panels</a>
+
+<a href="#">Solar Inverters</a>
+
+<div class="sub-items">
+
+<a href="#">Solar Inverters String Inverters</a>
+
+<a href="#">Solar Edge - Optimizer Inverters</a>
+
+<a href="#">Micro Inverters</a>
+
 </div>
 
-<div class="menu-column">
-<h4>Solar</h4>
-<a>Solar Panels</a>
-<a>String Inverters</a>
-<a>Micro Inverters</a>
-<a>Solar Battery</a>
-<a>Solar Accessories</a>
+</div>
+
+<div class="dropdown-column">
+
+<h4>Hydrogen Group</h4>
+
+<a href="#">Hydrogen Fuel Cell Stacks</a>
+
+<a href="#">Hydrogen Fuel Cell Components</a>
+
+<a href="#">PEM Electrolyzer</a>
+
 </div>
 
 </div>
 
 </div>
 
-
+</div>
 <div class="dropdown">
 
 <a href="#">Applications</a>
 
-<div class="mega-menu">
+<div class="dropdown-menu">
 
-<div class="menu-column">
+<div class="dropdown-container">
 
-<a>H2LAB</a>
-<a>H2POWER</a>
-<a>H2TRANSPORT</a>
-<a>H2BIKE</a>
-<a>H2DRONE</a>
+<div class="dropdown-column">
+
+<h4>Applications Group</h4>
+
+<a href="#">H2 Lab</a>
+
+<a href="#">H2 Power</a>
+
+<a href="#">H2 Transport</a>
+
+<div class="sub-items">
+
+<a href="#">Car</a>
+
+<a href="#">Train</a>
+
+<a href="#">Wind Turbine</a>
+
+<a href="#">Street Light</a>
+
+
+
+</div>
+
+</div>
+
+<div class="dropdown-column">
+
+
+<h4><br></h4>
+
+<a href="#">H2 Bike</a>
+
+<a href="#">H2 Drone</a>
+
+
 
 </div>
 
@@ -70,43 +403,78 @@
 
 </div>
 
-<a href="#about">About</a>
-<a href="#contact">Contact</a>
+</div>
+
+<!-- <a href="#">Applications</a> -->
+
+<a href="#">About Us</a>
+
+<a href="#">Contact</a>
+
+</div>
+
+</div>
 
 </nav>
 
-</header>
 
+<!-- HERO -->
 
 <section class="hero">
 
 <div>
-<h1>Clean Hydrogen Energy</h1>
-<p>Powering the future with Hydrogen & Solar Technologies</p>
+
+<h1>H<sub>2</sub>Green Technologies</h1>
+
+<p>Clean Hydrogen Energy for a Sustainable Future</p>
+
+<button>Explore Technology</button>
+
 </div>
 
 </section>
 
 
-<section class="section">
+<!-- FEATURES -->
 
-<h2>Hydrogen Technology</h2>
+<section>
+
+<div class="container">
+
+<h2 class="title">Why H2Green</h2>
 
 <div class="grid">
 
 <div class="card">
-<img src="images/fuel-cell.jpg">
-<h3>Fuel Cells</h3>
+
+<img src="https://img.icons8.com/ios-filled/100/2e7d32/leaf.png">
+
+<h3>Zero Emissions</h3>
+
+<p>Hydrogen produces only water as a byproduct.</p>
+
 </div>
 
 <div class="card">
-<img src="images/fuel-stack.jpg">
-<h3>Fuel Cell Stacks</h3>
+
+<img src="https://img.icons8.com/ios-filled/100/2e7d32/wind-turbine.png">
+
+<h3>Renewable Powered</h3>
+
+<p>Generated using solar and wind energy.</p>
+
 </div>
 
 <div class="card">
-<img src="images/electrolyzer.jpg">
-<h3>PEM Electrolyzer</h3>
+
+<img src="https://img.icons8.com/ios-filled/100/2e7d32/electricity.png">
+
+<h3>Fuel Cell Innovation</h3>
+
+<p>Advanced hydrogen fuel cell technologies.</p>
+
+</div>
+
 </div>
 
 </div>
@@ -114,95 +482,84 @@
 </section>
 
 
-<section class="section section-light">
-
-<h2>Solar Technology</h2>
-
-<div class="grid">
-
-<div class="card">
-<img src="images/solar-panels.jpg">
-<h3>Solar Panels</h3>
-</div>
-
-<div class="card">
-<img src="images/string-inverter.jpg">
-<h3>String Inverter</h3>
-</div>
-
-<div class="card">
-<img src="images/micro-inverter.jpg">
-<h3>Micro Inverter</h3>
-</div>
-
-</div>
-
-</section>
-
-
-<section id="about" class="section">
-
-<h2>About Us</h2>
-
-<p>
-
-H2Green Technologies is focused on developing sustainable hydrogen
-and solar energy technologies for the future. Our mission is to
-create efficient clean energy systems that power industries,
-transportation, and communities.
-
-</p>
-
-</section>
-
-
-<section id="contact" class="section section-light">
-
-<h2>Contact Us</h2>
-
-<div class="contact-container">
-
-<div>
-
-<h3>H2Green Technologies</h3>
-
-<p>
-
-460 A/5/1, M.S. Road<br>
-Gandhi Nagar<br>
-Parvathipuram<br>
-Vettunimadam Post<br>
-Nagercoil - 629003
-
-</p>
-
-</div>
-
-
-<div class="contact-form">
-
-<input type="text" placeholder="Your Name">
-
-<input type="email" placeholder="Email">
-
-<textarea placeholder="Message"></textarea>
-
-<button>Send Message</button>
-
-</div>
-
-</div>
-
-</section>
-
+<!-- FOOTER -->
 
 <footer>
 
-H2Green Technologies © 2026
+<div class="container footer-grid">
+
+<div>
+
+<h4>H2Green</h4>
+
+<p>Advanced hydrogen technologies for clean energy.</p>
+
+</div>
+
+<div>
+
+<h4>Technology</h4>
+
+<a href="#">Hydrogen Fuel Cells</a>
+
+<a href="#">Electrolysis</a>
+
+<a href="#">Energy Storage</a>
+
+</div>
+
+<div>
+
+<h4>Company</h4>
+
+<a href="#">About</a>
+
+<a href="#">Careers</a>
+
+<a href="#">News</a>
+
+</div>
+
+<div>
+
+<h4>Contact</h4>
+
+<a href="#">info@h2green.com</a>
+
+<a href="#">Locations</a>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+© 2026 H2Green Technologies
+
+</div>
 
 </footer>
 
-<script src="js/script.js"></script>
+
+<!-- NAVBAR SCROLL EFFECT -->
+
+<script>
+
+window.addEventListener("scroll",function(){
+
+const nav=document.querySelector("nav");
+
+if(window.scrollY>50){
+nav.classList.add("scrolled");
+}
+else{
+nav.classList.remove("scrolled");
+}
+
+});
+
+</script>
 
 </body>
 </html>
+
