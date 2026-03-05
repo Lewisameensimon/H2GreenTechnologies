@@ -38,6 +38,8 @@ align-items:center;
 padding:15px 0;
 }
 
+/* LOGO */
+
 .logo{
 display:flex;
 align-items:center;
@@ -73,6 +75,7 @@ text-decoration:none;
 font-weight:500;
 font-size:16px;
 color:white;
+transition:0.2s;
 }
 
 nav.scrolled .menu a{
@@ -112,10 +115,15 @@ transition:all .25s ease;
 box-shadow:0 15px 40px rgba(0,0,0,0.08);
 }
 
+/* Hover only on desktop */
+@media(min-width:901px){
+
 .dropdown:hover .dropdown-menu{
 opacity:1;
 visibility:visible;
 transform:translateY(0);
+}
+
 }
 
 .dropdown-container{
@@ -184,6 +192,7 @@ border:none;
 border-radius:6px;
 background:#0F5132;
 color:white;
+cursor:pointer;
 }
 
 /* SECTIONS */
@@ -221,6 +230,11 @@ padding:35px;
 border-radius:12px;
 box-shadow:0 10px 25px rgba(0,0,0,0.05);
 text-align:center;
+transition:transform .2s ease;
+}
+
+.card:hover{
+transform:translateY(-4px);
 }
 
 .card img{
@@ -259,6 +273,104 @@ margin-top:40px;
 padding-top:20px;
 text-align:center;
 font-size:14px;
+}
+
+
+/* ========================= */
+/* CONTACT PAGE */
+/* ========================= */
+
+.contact-hero{
+
+margin-top:90px;
+min-height:420px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+text-align:center;
+
+background:
+linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
+url("https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9");
+
+background-size:cover;
+background-position:center;
+
+color:white;
+
+padding:60px 20px;
+
+}
+
+.contact-hero-content h1{
+font-size:52px;
+margin-bottom:15px;
+}
+
+.contact-hero-content p{
+font-size:18px;
+max-width:650px;
+margin:auto;
+opacity:0.9;
+}
+
+/* CONTACT SECTION */
+
+.contact-section{
+padding:90px 0;
+}
+
+.contact-grid{
+display:grid;
+grid-template-columns:1fr 1.2fr;
+gap:40px;
+align-items:stretch;
+}
+
+/* CONTACT CARD */
+
+.contact-card{
+background:white;
+padding:40px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.06);
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
+
+.contact-card h2{
+color:#0F5132;
+margin-bottom:20px;
+font-size:26px;
+}
+
+.contact-card p{
+font-size:18px;
+line-height:1.7;
+}
+
+.contact-email{
+margin-top:20px;
+font-weight:500;
+color:#0F5132;
+}
+
+/* MAP */
+
+.contact-map{
+width:100%;
+}
+
+.contact-map iframe{
+display:block;
+width:100%;
+height:420px;
+border:0;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.06);
 }
 
 /* MOBILE */
@@ -323,6 +435,27 @@ padding:70px 20px;
 
 .footer-grid{
 grid-template-columns:1fr;
+}
+
+.contact-grid{
+grid-template-columns:1fr;
+gap:30px;
+}
+
+.contact-hero{
+min-height:340px;
+}
+
+.contact-hero-content h1{
+font-size:38px;
+}
+
+.contact-card{
+padding:30px;
+}
+
+.contact-map iframe{
+height:320px;
 }
 
 }
